@@ -1,0 +1,170 @@
+<div class="table-header-controls">
+    <button *ngIf="columnsearch" (click)="search()" class="btn btn-primary">
+      <span class="fa fa-edit pull-left"></span>
+      <span class="pull-right">Search</span>
+    </button>
+    <button *ngIf="columnsearch" (click)="clearFilters()" class="btn btn-danger">
+      <span class="fa fa-broom pull-left"></span>
+      <span class="pull-right">Clear</span>
+    </button>
+</div>
+
+
+
+<!-- <div class="row">
+    <div *ngIf="tablesearch" class="col-xs-12 mx-auto mt-4 mb-4">
+      <input type="text" placeholder="Search" class="form-control table-search" [(ngModel)]="searchText">
+    </div>
+  </div> -->
+  <div class="row">
+    <div class="col-xs-12 table-wrapper-scroll-y tableFixHead">
+      <table class="table table-bordered custom-table">
+        <!-- Table Headers -->
+        <thead class="thead-light">
+          <tr>
+            <th colspan="2" *ngIf="displayCount">
+              Rows count : {{count}}
+            </th>
+          </tr>
+          <tr>
+            <th *ngIf="showcontrols" class="table-header align-middle" rowspan="2"
+              [ngStyle]="{width: calculateControlsColumnWidth(rowactions.length)}">
+              Controls
+            </th>
+          <th *ngIf="selectRows" class="table-header " rowspan="2"
+            style="width: 40px;">
+              <input type="checkbox" [checked]="allSelected" (click)="toggleSelectionAll($event.target.checked)"/>
+          </th>
+            <th 
+              scope="col" class="table-header"
+              [ngClass]="{fixedColumnStyle:header.style=='fixedColumn'}" 
+              *ngFor="let header of headers" 
+              >
+              {{ header.label }}
+              <i class="fa" [ngClass]="{'fa-angle-down': ((column == header.key && isDesc) || (column == header.key+'.'+header.secondLevel && isDesc) || (column == header.key+'.'+header.secondLevel+'.'+header.thirdLevel && isDesc) ), 
+                            'fa-angle-up': ((column == header.key && !isDesc) || (column == header.key+'.'+header.secondLevel && !isDesc) || (column == header.key+'.'+header.secondLevel+'.'+header.thirdLevel && !isDesc) ) }" aria-hidden="true"> </i>
+            </th>
+          </tr>
+          <tr *ngIf="columnsearch">
+            <!-- <td *ngIf="showcontrols" class="controls-td"></td> -->
+            <td *ngFor="let header of headers" class="table-data">
+                <div [ngSwitch]="header.type" *ngIf="searchObjectInitialized">
+                    <span *ngSwitchCase="'nested-name'">
+                        <input placeholder="Search" type="text" class="form-control column-search"
+                        [(ngModel)]="searchObject[header.key][header.secondLevel]">
+                    </span>
+                    <span *ngSwitchCase="'nested-date'">
+                        <input placeholder="Search" type="text" class="form-control column-search"
+                        [(ngModel)]="searchObject[header.key][header.secondLevel]">
+                    </span>
+                    <span *ngSwitchDefault>
+                        <input placeholder="Search" type="text" class="form-control column-search"
+                        [(ngModel)]="searchObject[header.key]">
+                    </span>
+                  </div>
+            </td>
+          </tr>
+        </thead>
+        <!-- Table Data -->
+        <tbody>
+          <tr
+            *ngFor="let datarow of currentData">
+            <td *ngIf="showcontrols" class="text-center controls-td">
+              <!-- [ngStyle]="{'background-color': action.color?action.color:'white','color':action.color?'white':'black'}" -->
+              <button *ngFor="let action of rowactions; let i = index" class="btn btn-light mr-1"
+               
+                [ngClass]="{'ml-1':i===0}" data-toggle="tooltip" data-placement="bottom" title="{{action.tooltip}}"
+                (click)="callParentMethod(action.actionhandler,datarow)"
+                [disabled]="action.conditional?action.conditional.value!=(datarow[action.conditional.name]): false">
+                <i class="{{action.icon}}"></i>
+              </button>
+            </td>
+            <td *ngIf="selectRows" class="text-center controls-td">
+              <input type="checkbox"
+              [disabled]="selectRowsConditional?selectRowsConditional.value.indexOf(datarow[selectRowsConditional.name])>-1: false"
+              [ngModel]="datarow.selected" (click)="toggleSelectionItem(datarow)"/>
+            </td>
+            <td *ngFor="let header of headers" class="table-data" [ngClass]="{fixedColumnStyle:header.style=='fixedColumn'}">
+              <div [ngSwitch]="header.type">
+                  <span *ngSwitchCase="'nested-name'">
+                      {{ datarow[header.key] ? datarow[header.key][header.secondLevel]:''}}
+                    </span>
+                    <span *ngSwitchCase="'nested-date'">
+                        {{ datarow[header.key] ? (datarow[header.key][header.secondLevel] | date:'yyyy-MM-dd'):''}}
+                    </span>
+              <span *ngSwitchCase="'boolean'">
+                      {{ datarow[header.key]==1?'YES':'NO'}}
+               </span>
+               <span *ngSwitchCase="'date'">
+                  {{ datarow[header.key] | date:'yyyy-MM-dd'}}
+                </span>
+            
+                <span *ngSwitchCase="'objectList'">
+                  <span *ngFor="let subelement of datarow[header.key]" class="listItem">
+                    {{ subelement[header.objectKey] }}
+                  </span>
+                </span>
+                <span *ngSwitchDefault>
+                  {{ datarow[header.key] }}
+                </span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <div class="row justify-content-end mr-auto"  style="padding-top:20px">
+    <div class="col-xs-3">
+      <!-- Rows Per Page -->
+      <div class="form-inline form-group">
+        <label for="rowsPerPage"><small>Rows per page</small></label>
+        <select id="rowsPerPage" class="form-control-sm ml-2 mr-4 page-form-control"
+          [(ngModel)]="paginationConfig.itemsPerPage" (change)="rowsPerPageChanged()">
+          <option *ngFor="let op of limitOptions"> {{ op }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-xs-3">
+      <!-- Page Dropdown -->
+      <div class="form-inline form-group">
+        <label for="pagedrp"><small>Page</small></label>
+        <select id="pagedrp" class="form-control-sm ml-2 mr-4 page-form-control"
+          [(ngModel)]="paginationConfig.currentPage" (change)="pageChanged()">
+          <option *ngFor="let pageNum of pageNumbers"> {{ pageNum }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="pagination pagination-sm col-xs-6">
+      <!-- First Page Arrow -->
+      <div class="page-item" [class.disabled]="isFirstPage()">
+        <span class="page-link" (click)="firstPage()">
+          <<
+        </span>
+      </div>
+      <!-- Previous Page Arrow -->
+      <div class="page-item" [class.disabled]="isFirstPage()">
+        <span class="page-link" (click)="previousPage()">
+          <
+        </span>
+      </div>
+      <!-- Pagination Limits -->
+      <div>
+        <input class="pagination-limit form-control-sm page-form-control" type="text"
+          [ngModel]="paginationLimits" disabled>
+      </div>
+      <!-- Right Page Arrow -->
+      <div class="pagination-next page-item" [class.disabled]="isLastPage()">
+        <span class="page-link" (click)="nextPage()">
+          >
+        </span>
+      </div>
+      <!-- Last Page Arrow -->
+      <div class="pagination-next page-item" [class.disabled]="isLastPage()">
+        <span class="page-link" (click)="lastPage()">
+          >>
+        </span>
+      </div>
+    </div>
+  </div>

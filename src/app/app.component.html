@@ -1,0 +1,37 @@
+<div class="wrapper">
+  <header class="shadow-sm bg-white mainHeader">
+    <div class="row justify-content-between">
+      <div class="col-5 header-firstpart">
+        &nbsp;
+          <a  href="#"  onclick="event.preventDefault();openNav()" style="margin-right:10px;"> 
+          <img src="assets/images/menu.png"  height="18px"/>  </a>
+       &nbsp;
+        <a routerLink="/home"><img src="assets/images/logo.png" height="30px;" style="flex:none" /></a>
+        <span style="color:black;"><b>Phone Validation App</b></span>
+      </div>
+      <div class="col-7 row justify-content-end">
+      </div>
+    </div>
+  </header>
+  <div  id="mySidenav" class="sidenav" >
+     <!----------------Home Link-------------->
+    <a  [ngClass]="{'menu-active':itemSelected=='home'}" 
+    routerLink="/home"><img src="assets/images/home_white.png" width=30 height=30><br>Home</a>
+    <!----------------Rooms Link-------------->         
+   </div>
+  <div id="main">
+    <router-outlet></router-outlet>
+    <ng-snotify></ng-snotify>
+  </div>
+  <footer id="footer" class="page-footer font-small blue">
+    <div class="container-fluid text-center text-md-left">
+      <div class="row">
+        <div class="col-12 float-right" style="text-align: right;">
+          <p style="margin:0; "> <b>Phone-Validation V1.0</b> 2022 </p>
+        </div>
+        </div>
+      </div>
+  </footer>
+  </div>
+  
+  

@@ -1,0 +1,40 @@
+
+
+                <div class="row table-title-row">
+                    <div class="col-md-6">
+                      <h5 style="padding-top:1px;">Customers List</h5>
+                    </div>
+                     <!----------------------------- Controls------------------------------->
+                    <div class="col-md-6">
+                      <div class="float-right">
+                    <!----------------------------- Country------------------------------->    
+                    <label  *ngIf="countriesList && countriesList.length>0" class="required">Country</label>
+                    &nbsp;
+                    <select *ngIf="countriesList && countriesList.length>0" [ngModel]="selectedCountryValue"  (change)="OnCountriesChange($event)" class="input-lg" #countrySelected>
+                        <option *ngFor="let entry of countriesList" [ngValue]="entry.id" > {{ entry.name }}</option>
+                    </select>
+                    &nbsp; &nbsp; &nbsp;
+                    <!----------------------------- Valid------------------------------->
+                    <label class="required">Valid No.</label>
+                    &nbsp;
+                    <select [ngModel]="selectedValidValue"  (change)="OnValidChange($event)" class="input-lg" #validSelected>
+                        <option selected="selected" [ngValue]="-1"> --Select-- </option>
+                        <option [ngValue]="0"> Invalid</option>
+                        <option [ngValue]="1"> Valid</option>
+                    </select>
+                    </div>
+                    </div>
+                  </div>
+                   <!----------------------------- Table------------------------------->
+                  <div class="innerBody">
+                    <div class="col-md-12" *ngIf="countriesLoaded">
+                      <app-server-table  *ngIf="dataLoaded" [headers]="tableHeaders" [rowactions]="tableactions"
+                         [searchField]="dataSearchObject" [columnsearch]="false" [enablePaging]="true"
+                        (methodCall)="tableMethodCall($event)"  [refreshValue]="refreshValue" 
+                        [apiPath]="apiPath">
+                      </app-server-table>
+                    </div>
+                  </div>
+           
+
+            
