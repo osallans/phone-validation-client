@@ -2,7 +2,9 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.7.
 
-Bootstrap 4.1
+`Bootstrap 4.1` used for styling
+
+`yarn` is used for package managing.
 
 ## Description
 
@@ -22,6 +24,8 @@ The project stucture is pretty simple N-Tier app in regards to the project struc
 
     - Services for both API & Utilities (HTTP Requests , Error Handlers..etc.)
 ## Development server
+
+Run `npm install --global yarn` for installing yarn
 
 Run `yarn` for adding needed packages.
 
