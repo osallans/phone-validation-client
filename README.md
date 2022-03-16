@@ -18,8 +18,10 @@ The project stucture is pretty simple N-Tier app in regards to the project struc
 
     - Directives that are used across app (e.g. Server Side paginated table , App Notifications...etc.)
 
-    - Services for both API & Utilities
+    - Services for both API & Utilities (HTTP Requests , Error Handlers..etc.)
 ## Development server
+
+Run `yarn` for installing all packages.
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
@@ -31,5 +33,4 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-=======
-# phone-validation-client
+
