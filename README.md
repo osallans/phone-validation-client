@@ -9,8 +9,11 @@ The project stucture is pretty simple in regards to the project structure which 
 -Angular components for main app & home pages.
 -Shared directory that contains the following:
   -commonFunctions
+
   -Models which acts as a replica from entites on the server side including the filter DTO 
+
   -Directives that are used across app (e.g. Server Side paginated table , App Notifications...etc.)
+  
   -Services for both API & Utilities
 ## Development server
 
