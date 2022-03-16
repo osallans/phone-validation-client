@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # Phone-Validation
 
@@ -26,3 +27,6 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+=======
+# phone-validation-client
+>>>>>>> 8d6531d00ffc9cf170fe4cf2f0223977668ee586

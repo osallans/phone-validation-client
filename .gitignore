@@ -45,9 +45,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-=======
-=======
->>>>>>> 5b2f257339cb41a02d7ebfcc3e8b128147d3a7af
 # Logs
 logs
 *.log
