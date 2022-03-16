@@ -14,11 +14,11 @@ The project stucture is pretty simple N-Tier app in regards to the project struc
 
 - Shared directory that contains the following:
 
-- Models which acts as a replica from entites on the server side including the filter DTO 
+    - Models which acts as a replica from entites on the server side including the filter DTO 
 
-- Directives that are used across app (e.g. Server Side paginated table , App Notifications...etc.)
+    - Directives that are used across app (e.g. Server Side paginated table , App Notifications...etc.)
 
-- Services for both API & Utilities
+    - Services for both API & Utilities
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
