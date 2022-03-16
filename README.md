@@ -2,19 +2,23 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.7.
 
+## Description
+
 This project is mainly for the client-side App for phone-validation application where it connects directly to server side local docker image or just local dev. sever locally on port 8080
 
-The project stucture is pretty simple in regards to the project structure which consists of the main components
+## Project Structure
 
--Angular components for main app & home pages.
--Shared directory that contains the following:
-  -commonFunctions
+The project stucture is pretty simple N-Tier app in regards to the project structure which consists of the following components
 
-  -Models which acts as a replica from entites on the server side including the filter DTO 
+- Angular components for main app & home pages.
 
-  -Directives that are used across app (e.g. Server Side paginated table , App Notifications...etc.)
-  
-  -Services for both API & Utilities
+- Shared directory that contains the following:
+
+- Models which acts as a replica from entites on the server side including the filter DTO 
+
+- Directives that are used across app (e.g. Server Side paginated table , App Notifications...etc.)
+
+- Services for both API & Utilities
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
