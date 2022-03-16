@@ -2,6 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.7.
 
+Bootstrap 4.1
+
 ## Description
 
 This project is mainly for the client-side App for phone-validation application where it connects directly to server side local docker image or just local dev. sever locally on port 8080
@@ -10,7 +12,7 @@ This project is mainly for the client-side App for phone-validation application 
 
 The project stucture is pretty simple N-Tier app in regards to the project structure which consists of the following components
 
-- Angular components for main app & home pages.
+- Angular components for home page & main app.
 
 - Shared directory that contains the following:
 
@@ -21,7 +23,7 @@ The project stucture is pretty simple N-Tier app in regards to the project struc
     - Services for both API & Utilities (HTTP Requests , Error Handlers..etc.)
 ## Development server
 
-Run `yarn` for installing all packages.
+Run `yarn` for adding needed packages.
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
