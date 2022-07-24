@@ -4,8 +4,14 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080/api/'
+  apiUrl: 'https://0lo174nzi1.execute-api.us-east-1.amazonaws.com/prod/',
+  cognito: 
+  {
+    userPoolId: 'us-east-1_pAMK9H5j1',
+    userPoolWebClientId: 'rj963n6e2eij68ujn36pkrik3'
+  }
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

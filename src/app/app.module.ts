@@ -22,6 +22,9 @@ import { MatCarouselModule } from '@ngbmodule/material-carousel';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { HomeService } from './shared/services/api/home.service';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { ProfileComponent } from './profile/profile.component';
 
  
 @NgModule({
@@ -31,7 +34,10 @@ import { HomeService } from './shared/services/api/home.service';
     ServerTableComponent,
     NumbersOnly,
     ConfirmationDialogComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    SignUpComponent,
+    SignInComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

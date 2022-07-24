@@ -1,0 +1,69 @@
+<div class="row justify-content-center my-5">
+    <div class="col-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col mb-2">
+              <label for="email" class="form-label">Email:</label>
+              <input type="email" id="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control form-control-sm">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col mb-2">
+              <label for="password" class="form-label">Password:</label>
+              <div class="input-group input-group-sm">
+                <input [type]="user.showPassword ? 'text' : 'password'" id="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control form-control-sm">
+                <button type="button" class="btn btn-outline-secondary" (click)="user.showPassword = !user.showPassword">
+                  <i class="bi" [ngClass]="{'bi-eye-fill': !user.showPassword, 'bi-eye-slash-fill': user.showPassword}"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col d-grid">
+              <button type="button" (click)="signIn()" class="btn btn-sm btn-success" [disabled]="loading">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="loading"></span>
+                Sign in
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<form   [formGroup]="loginForm">
+    <div class="d-flex justify-content-center">
+        <div class="col-md-3 login-card">
+          <h1 style="text-align:center;color:rgb(192, 175, 110);">
+            <img id="Image11" src="../assets/images/lock.png" class="lock-logo">&nbsp;&nbsp;Login</h1>
+
+      <div class="form-group form-group-formatted" 
+      >
+        <label  class="required gray-label">Email</label>
+        <input id="txt_username" type="text" [ngClass]="{'required-field':formField('username').invalid && (formField('username').dirty || formField('username').touched)}" 
+        class="form-control input-lg" formControlName="username">
+      </div>
+      <div class="form-group form-group-formatted">
+      <label  class="required gray-label" >Password</label>
+      <input id="txt_password" type="password" [ngClass]="{'required-field':formField('password').invalid && (formField('password').dirty || formField('password').touched)}" 
+      class="form-control input-lg" formControlName="password">
+    </div>
+     <div class="row" style="padding-bottom:30px;">
+        <div class="col-md-12">
+          <button [disabled]="!loginForm.valid || loginForm.pristine"  (click)="client_login()" id="client_login" class="btn btn-primary float-right" >
+            Client Login
+         </button> 
+
+          <button [disabled]="!loginForm.valid || loginForm.pristine" id="admin_login" (click)="onSubmit(loginForm,$event)" class="btn btn-success float-right"  >
+             Administrator Login
+          </button>
+        </div>
+      </div>
+ 
+</div>
+</div>
+
+  </form>
