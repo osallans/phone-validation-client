@@ -13,7 +13,7 @@ export class SignUpComponent {
   loading: boolean;
   isConfirm: boolean;
   user: IUser;
-
+  errorMessage:String='';
   constructor(private router: Router,
               private cognitoService: CognitoService) {
     this.loading = false;
@@ -27,7 +27,13 @@ export class SignUpComponent {
     .then(() => {
       this.loading = false;
       this.isConfirm = true;
-    }).catch(() => {
+    }).catch((er) => {
+      if(er.message.indexOf('Password')>-1)
+        this.errorMessage='Password should be at least 8 characters !';
+      if(er.message.indexOf('exist')>-1)
+        this.errorMessage='User already exists !';
+      if(er.message.indexOf('email')>-1)
+        this.errorMessage='Email is incorrect';
       this.loading = false;
     });
   }

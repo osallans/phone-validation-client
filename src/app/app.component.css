@@ -43,7 +43,7 @@
   }
   #main {
     transition: margin-left .5s;
-    padding: 0 16px;
+    margin: 0 16px;
     background-color: #fff;
   }
 

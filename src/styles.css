@@ -15,7 +15,7 @@ body,html{
 {
     padding-top: 30px;
     width: 100%;
-    max-width:500px;
+    max-width:350px !important;
     background-color: #F7F7F7;
     /* margin: 0 0px 10px 21px; */
     margin-top: 100px;
@@ -72,8 +72,8 @@ body,html{
     font-weight: bold;
 }
 .table-title-row {
-    background-color: #eceeef;
-    padding: 5px;
+    /* padding: 5px; */
+    padding: 0px 6px;
 }
 
 .table-title-row h2 {
@@ -654,6 +654,19 @@ body {
       height:2px ;
       color:black ;
   }
+  .chosen-link
+  {
+    color:#3758a7b3 !important;
+  }
+  .normal-link
+  {
+      color:rgba(0,0,0,.5) !important;
+  }
+  .btn-fav{
+    color: #fff !important;
+    background-color: #3758a7b3 !important;
+    border-color: #3758a7b3 !important;
+  }
  .custom-slider .ng5-slider .ng5-slider-bubble {
     font-size: 10px ;
     color:#fff;
@@ -678,6 +691,10 @@ body {
   }
 .custom-slider .ng5-slider{
     margin-top:10px ;
+  }
+  .nav-item{
+      border-right: 1 px dashed red;
+      margin : 10px 0px;
   }
 /*******************************Scroll bar styles***********************/
 /* width */

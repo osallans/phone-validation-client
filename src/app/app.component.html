@@ -1,64 +1,59 @@
-<nav class="navbar navbar-expand-sm navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Angular Amazon Cognito</a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div id="navbarContent" class="collapse navbar-collapse">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/signUp" routerLinkActive="active" *ngIf="!isAuthenticated">Sign up</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/signIn" routerLinkActive="active" *ngIf="!isAuthenticated">Sign in</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/profile" routerLinkActive="active" *ngIf="isAuthenticated">Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="" (click)="signOut()" *ngIf="isAuthenticated">Sign out</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
 
 
 
 
 
 <div class="wrapper">
-  <header class="shadow-sm bg-white mainHeader">
-    <div class="row justify-content-between">
-      <div class="col-5 header-firstpart">
-        &nbsp;
-          <a  href="#"  onclick="event.preventDefault();openNav()" style="margin-right:10px;"> 
-          <img src="assets/images/menu.png"  height="18px"/>  </a>
-       &nbsp;
-        <a routerLink="/home"><img src="assets/images/logo.png" height="30px;" style="flex:none" /></a>
-        <span style="color:black;"><b>Phone Validation App</b></span>
-      </div>
-      <div class="col-7 row justify-content-end">
+
+  
+  <nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <div class="container-fluid">
+      <a routerLink="/home"><img src="assets/images/logo.png" height="30px;" style="flex:none" /></a>
+      <span style="color:#3758a7b3;"> <b style="margin-left:5px;"> Phonebook</b></span>
+  
+ 
+  
+      <div id="navbarContent" class="collapse navbar-collapse" style="padding-left:50px;">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+          <li class="nav-item" *ngIf="isAuthenticated">
+            <a [ngClass]="{'chosen-link': isChosen=='home','normal-link': isChosen!='home'}" class="nav-link" routerLink="/home" routerLinkActive="active">
+              <i style="margin:0px 5px;" class="fa fa-home" ></i>Home
+            </a>
+          </li>
+          <!-- <li class="nav-item" *ngIf="!isAuthenticated">
+             <a class="nav-link" routerLink="/signUp" routerLinkActive="active"><i style="color:#3758a7b3;margin:0;" class="fa fa-user-plus" ></i> Sign up</a>
+          </li> -->
+          <li class="nav-item" *ngIf="!isAuthenticated">
+            <a [ngClass]="{'chosen-link': isChosen=='signin','normal-link': isChosen!='signin'}" class="nav-link" routerLink="/signIn" routerLinkActive="active" >
+              <i style="margin:0px 5px;" class="fa fa-lock" ></i>  Sign in
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="isAuthenticated">
+            <a [ngClass]="{'chosen-link': isChosen=='profile','normal-link': isChosen!='profile'}" class="nav-link" routerLink="/profile" routerLinkActive="active" >
+              <i style="margin:0px 5px;" class="fa fa-user" ></i> Profile
+            </a>
+          </li>
+          <li *ngIf="isAuthenticated" class="nav-item">
+            <a [ngClass]="{'chosen-link': isChosen=='signout','normal-link': isChosen=='signout'}" class="nav-link" routerLink="" (click)="signOut()">
+              <i style="margin:0px 5px;"class="fa fa-arrow-right"></i> Sign out
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
-  </header>
-  <div  id="mySidenav" class="sidenav" >
-     <!----------------Home Link-------------->
-    <a  [ngClass]="{'menu-active':itemSelected=='home'}" 
-    routerLink="/home"><img src="assets/images/home_white.png" width=30 height=30><br>Home</a>
-    <!----------------Rooms Link-------------->         
-   </div>
+  </nav>
+
+
   <div id="main">
     <router-outlet></router-outlet>
     <ng-snotify></ng-snotify>
   </div>
-  <footer id="footer" class="page-footer font-small blue">
+  <footer id="footer" class="page-footer font-small blue navbar navbar-expand-sm navbar-light bg-light">
     <div class="container-fluid text-center text-md-left">
       <div class="row">
         <div class="col-12 float-right" style="text-align: right;">
-          <p style="margin:0; "> <b>Phone-Validation V1.0</b> 2022 </p>
+          <p style="margin:0;color:#3758a7b3;"> <b>Phone-Validation V1.0</b> 2022 </p>
         </div>
         </div>
       </div>

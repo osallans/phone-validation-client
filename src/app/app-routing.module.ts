@@ -10,7 +10,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 
 const routes: Routes = [
   {
-    path: '',redirectTo: 'signIn',
+    path: '',redirectTo: 'home',
     pathMatch: 'full',
   },
   {
@@ -27,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'signIn',
+    redirectTo: 'home',
   },
   { path: 'home', component: HomeComponent,data: { animation: 'home' } },
   { path: '', redirectTo: 'home', pathMatch: 'full',  data: { animation: 'home' } } 

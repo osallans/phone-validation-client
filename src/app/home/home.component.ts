@@ -1,4 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { CognitoService } from '../cognito.service';
 import { country } from '../shared/models/country';
 import { customer } from '../shared/models/customer.model';
 import { customerSearchDto } from '../shared/models/customerSearchDto';
@@ -36,12 +38,18 @@ export class HomeComponent implements OnInit {
   storesData: any;
   selectedCountryValue:number;
   selectedValidValue:number;
-  constructor(private homeService:HomeService,public notifyService:NotifyService) { }
+  constructor(private router: Router,private homeService:HomeService,public notifyService:NotifyService,public cognitoService:CognitoService) { }
 
   ngOnInit() {
+    console.log(this.cognitoService.isAuthenticated());
+    this.cognitoService.isAuthenticated()
+        .then((success: boolean) => {
+          if(!success)this.router.navigate(['/signIn']);
+        });
+     
     this.selectedValidValue=-1;
     this.first.id=-1;
-    this.first.name='--Select--';
+    this.first.name='Any';
     this.homeService.getCountries().subscribe( (data: any) => {
       this.countriesList = data.data?data.data:data;
       this.countriesList.unshift(this.first);
@@ -58,7 +66,6 @@ export class HomeComponent implements OnInit {
     //////////////////////////////////////////////////////////////////////////////
     //Table header
     this.tableHeaders = [
-      { key: 'id', label: 'ID', type: 'name' },
       { key: 'name', label: 'Name', type: 'name' },
       { key: 'phone', label: 'Phone', type: 'name' },
       { key: 'country',secondLevel:'name', label: 'Country', type: 'nested-name' },

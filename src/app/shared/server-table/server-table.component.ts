@@ -72,6 +72,7 @@ export class ServerTableComponent implements OnInit,OnChanges {
       itemsPerPage: (this.enablePaging)?10:100000,
       currentPage: 1
     };
+    console.log('before',this.searchObject);
     this.getCount();
   }
 
@@ -124,7 +125,7 @@ export class ServerTableComponent implements OnInit,OnChanges {
   lastPage() {
     this.paginationConfig.currentPage = this.pageNumbers[this.pageNumbers.length-1];
     //this.searchObject.offset = (this.paginationConfig.currentPage - 1) * this.paginationConfig.itemsPerPage;
-    this.searchObject.pageIndex=this.paginationConfig.currentPage;
+    this.searchObject.pageIndex=this.paginationConfig.currentPage-1;
     this.getPage(this.searchObject);
   }
   
@@ -167,6 +168,7 @@ export class ServerTableComponent implements OnInit,OnChanges {
   search(reset:boolean){
     
     this.paginationConfig.currentPage = (reset)?1:this.paginationConfig.currentPage;
+    if(reset)this.searchObject.pageIndex=0;
     this.searchObject.offset = (this.paginationConfig.currentPage - 1) * this.paginationConfig.itemsPerPage;
     //Sending null in case of empty string
     // for (var key in this.searchObject) {
@@ -247,7 +249,7 @@ export class ServerTableComponent implements OnInit,OnChanges {
     const currentItem: SimpleChange = changes.item;
     
     if(this.refreshValue && this.refreshValue.indexOf('refresh')>-1){
-      this.search((this.refreshValue.indexOf('reset')>-1));
+      this.search((this.refreshValue.indexOf('refresh')>-1));
       this.refreshValue="";
       if(this.getSelected)this.getSelected="";
     }

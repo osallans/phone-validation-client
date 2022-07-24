@@ -15,10 +15,10 @@
                     </select>
                     &nbsp; &nbsp; &nbsp;
                     <!----------------------------- Valid------------------------------->
-                    <label class="required">Valid No.</label>
+                    <label class="required">Validity</label>
                     &nbsp;
                     <select [ngModel]="selectedValidValue"  (change)="OnValidChange($event)" class="input-lg" #validSelected>
-                        <option selected="selected" [ngValue]="-1"> --Select-- </option>
+                        <option selected="selected" [ngValue]="-1"> Any </option>
                         <option [ngValue]="0"> Invalid</option>
                         <option [ngValue]="1"> Valid</option>
                     </select>
